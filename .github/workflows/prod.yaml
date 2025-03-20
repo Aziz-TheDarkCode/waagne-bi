@@ -132,9 +132,6 @@ jobs:
           chmod -R 777 storage
           chmod -R 777 uploads
 
-          echo "Creating/updating .env file..."
-          cp .env.example .env
-
           docker compose down || true
           docker compose up -d
           docker image prune -f
