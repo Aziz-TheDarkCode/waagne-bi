@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
 
         // Rediriger vers le tableau de bord admin ou la page d'accueil
         return redirect()->intended(
-            Auth::user()->isAdmin() ? route('admin.dashboard') : route('home')
+            Auth::user()->isAdmin() ? route('admin.dashboard') : route('index')
         );
     }
 

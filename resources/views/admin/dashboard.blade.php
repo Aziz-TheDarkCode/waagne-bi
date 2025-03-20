@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 /90">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Statistiques générales -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
@@ -112,7 +112,7 @@
                                             {{ $order->created_at->format('d/m/Y H:i') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="{{ route('orders.show', $order) }}" class="text-indigo-600 hover:text-indigo-900">
+                                            <a href="{{ route('orders.show', $order) }}" class="text-brand-yellow hover:text-indigo-900">
                                                 Voir
                                             </a>
                                         </td>

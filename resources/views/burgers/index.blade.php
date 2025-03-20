@@ -5,14 +5,14 @@
                 {{ __('Nos Burgers') }}
             </h2>
             @if (auth()->user()?->isAdmin())
-                <a href="{{ route('burgers.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                <a href="{{ route('burgers.create') }}" class="bg-brand-yellow text-white px-4 py-2 rounded-md brand-yellow">
                     Ajouter un burger
                 </a>
             @endif
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 /90">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Message de notification -->
             <div id="notification" class="hidden fixed top-4 right-4 px-4 py-2 rounded-md text-white"></div>
@@ -21,7 +21,7 @@
                 @foreach ($burgers as $burger)
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         @if ($burger->image_path)
-                            <img src="{{ Storage::url($burger->image_path) }}" alt="{{ $burger->name }}" class="w-full h-48 object-cover">
+                            <img src="{{ $burger->image_path }}" alt="{{ $burger->name }}" class="w-full h-48 object-cover">
                         @endif
                         <div class="p-6">
                             <h3 class="text-lg font-semibold">{{ $burger->name }}</h3>
@@ -41,7 +41,7 @@
                                            id="quantity-{{ $burger->id }}"
                                            class="w-20 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <button onclick="addToCart({{ $burger->id }})" 
-                                            class="flex-1 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                                            class="flex-1 bg-brand-yellow text-white px-4 py-2 rounded-md brand-yellow">
                                         Ajouter au panier
                                     </button>
                                 </div>

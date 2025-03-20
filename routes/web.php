@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 // Routes publiques
-Route::get('/', [BurgerController::class, 'index'])->name('home');
-Route::get('/menu', [BurgerController::class, 'index'])->name('burgers.index');
+Route::get('/', function () {
+    return redirect()->route('burgers.index');
+});
 
 // Routes authentifiées
 Route::middleware('auth')->group(function () {
@@ -32,7 +33,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-    Route::get('/orders/{order}/pdf', [OrderController::class, 'downloadPdf'])->name('orders.pdf');
+    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.update.status');
+    
+    // Invoice download
+    Route::get('/orders/{order}/invoice', [OrderController::class, 'downloadInvoice'])->name('orders.invoice.download');
+
+    // Make burgers.index the main dashboard
+    Route::get('/dashboard', function () {
+        return redirect()->route('burgers.index');
+    })->name('dashboard');
+
+    // Burgers routes
+    Route::get('/menu', [BurgerController::class, 'index'])->name('burgers.index');
 });
 
 // Routes administrateur

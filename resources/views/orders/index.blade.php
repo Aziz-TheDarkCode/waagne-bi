@@ -5,14 +5,14 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 /90">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     @if($orders->isEmpty())
                         <div class="text-center py-4">
                             <p class="text-gray-500">Vous n'avez pas encore de commandes.</p>
-                            <a href="{{ route('burgers.index') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-500">
+                            <a href="{{ route('burgers.index') }}" class="mt-4 inline-block text-brand-yellow hover:text-brand-yellow">
                                 Voir le menu
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="{{ route('orders.show', $order) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                <a href="{{ route('orders.show', $order) }}" class="text-brand-yellow hover:text-indigo-900">
                                                     Détails
                                                 </a>
                                             </td>

@@ -10,29 +10,20 @@
             line-height: 1.6;
         }
         .header {
-            padding: 20px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .company-info {
-            float: left;
-            width: 50%;
+            text-align: center;
+            margin-bottom: 30px;
         }
         .invoice-info {
-            float: right;
-            width: 50%;
-            text-align: right;
-        }
-        .clear {
-            clear: both;
+            margin-bottom: 20px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
         th, td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
         }
         th {
@@ -41,27 +32,20 @@
         .total {
             text-align: right;
             font-weight: bold;
-            font-size: 16px;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="company-info">
-            <h1>{{ $company['name'] }}</h1>
-            <p>{{ $company['address'] }}<br>
-               {{ $company['city'] }}<br>
-               Tél: {{ $company['phone'] }}<br>
-               Email: {{ $company['email'] }}</p>
-        </div>
-        <div class="invoice-info">
-            <h2>Facture #{{ $order->id }}</h2>
-            <p>Date: {{ $order->created_at->format('d/m/Y') }}<br>
-               Client: {{ $order->user->name }}<br>
-               Email: {{ $order->user->email }}</p>
-        </div>
-        <div class="clear"></div>
+        <h1>FACTURE</h1>
+        <p>Numéro de commande: #{{ $order->id }}</p>
+    </div>
+
+    <div class="invoice-info">
+        <p><strong>Date:</strong> {{ $order->created_at->format('d/m/Y') }}</p>
+        <p><strong>Client:</strong> {{ $order->user->name }}</p>
+        <p><strong>Email:</strong> {{ $order->user->email }}</p>
+        <p><strong>Statut:</strong> {{ ucfirst($order->status) }}</p>
     </div>
 
     <table>
@@ -78,19 +62,21 @@
                 <tr>
                     <td>{{ $item->burger->name }}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>{{ number_format($item->unit_price, 2) }} FCFA</td>
-                    <td>{{ number_format($item->unit_price * $item->quantity, 2) }} FCFA</td>
+                    <td>{{ number_format($item->unit_price, 0) }} FCFA</td>
+                    <td>{{ number_format($item->quantity * $item->unit_price, 0) }} FCFA</td>
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="total">Total:</td>
+                <td>{{ number_format($order->total_amount, 0) }} FCFA</td>
+            </tr>
+        </tfoot>
     </table>
 
-    <div class="total">
-        Total: {{ number_format($order->total_amount, 2) }} FCFA
-    </div>
-
-    <div style="margin-top: 40px">
-        <p>Merci de votre confiance !</p>
+    <div class="footer">
+        <p>Merci de votre confiance!</p>
     </div>
 </body>
 </html> 
